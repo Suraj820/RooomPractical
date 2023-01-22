@@ -1,9 +1,9 @@
 # RooomPractical
-Learning about Room with MVVM and Flow
+Learning about Room with MVVM and Flow</br>
 
 
 
-#How Room helps us.
+# How Room helps us.</br>
 In android we are using the SQLite data base. But, we need to write a lot of complex codes to 
 effectively work with SQLite. Fortunately, now we have Room library. Room makes our work much easier
 by generating all the required complex codes in the background. However, we have to tell room what to
@@ -12,7 +12,7 @@ do. We communicate with room library using annotations. Room only recognize thin
 #Project setup.
 1)Add the kotlin-kapt plugin to the top of the gradle.
 
-```
+```gradle
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -23,7 +23,7 @@ plugins {
 2) Add the gradle dependencies required to work with Room ORM (object relational mapper)
 
 
-```
+```gradle
 dependencies {
     
     // room
@@ -35,7 +35,7 @@ dependencies {
 ```
 
 3)Add dependencies required to use Kotlin Coroutines.
-```
+```gradle
 dependencies {
     
     // room
@@ -54,7 +54,7 @@ dependencies {
 
 4)Add the dependencies required to use ViewModel and LiveData
 
-```
+```gradle
 dependencies {
     
     // room
@@ -81,8 +81,19 @@ dependencies {
 ```
 
 5)Enable data-binding
-```
+```gradle
  buildFeatures {
         dataBinding = true
     }
 ```
+
+
+
+
+
+
+
+
+
+# Refrence
+<a href="https://appdevnotes.com/android-mvvm-project-example/">appdevnotes</a>
