@@ -87,9 +87,80 @@ dependencies {
     }
 ```
 
+# Steps 
 
+1) Create a Room Entity class.
+ ```kotlin
+ @Entity(tableName = "table_name")
+data class Users(
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "user_id")
+    var id: Int,
 
+    @ColumnInfo(name = "user_name")
+    var name: String,
+
+    @ColumnInfo(name = "user_email")
+    var email: String
+
+)
+ 
+ ```
+2) create a DAO interface with all required room functions(methods)
+```kotlin
+@Dao
+interface SubscriberDAO {
+ 
+    @Insert
+    suspend fun insertUser(user: User) : Long
+ 
+    @Update
+    suspend fun updateUser(user: User) : Int
+ 
+    @Delete
+    suspend fun deleteUser(user: User) : Int
+ 
+    @Query("DELETE FROM user_data_table")
+    suspend fun deleteAll() : Int
+ 
+    @Query("SELECT * FROM user_data_table")
+    fun getAllSubscribers():Flow<List<User>>
+}
+
+```
+
+3)RoomDatabase Class
+In order to use Room library,  we need an instance of RoomDatabase class. For that, we should create an abstract subclass of RoomDatabase class</br>
+```kotlin
+@Database(entities = [User::class], version = 1)
+abstract class UserDataBase : RoomDatabase() {
+
+    abstract val UserDAO: UserDAO
+
+    companion object {
+
+        private var INSTANCE: UserDataBase? = null
+
+        fun getInstance(ctx: Context): UserDataBase {
+            synchronized(this) {
+                var instance = INSTANCE
+
+                if (instance == null) {
+                    instance = Room.databaseBuilder(
+                        ctx.applicationContext,
+                        UserDataBase::class.java,
+                        "UserDataBase"
+                    ).build()
+                }
+                return instance
+            }
+
+        }
+    }
+}
+
+```
 
 
 
