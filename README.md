@@ -9,7 +9,7 @@ effectively work with SQLite. Fortunately, now we have Room library. Room makes 
 by generating all the required complex codes in the background. However, we have to tell room what to
 do. We communicate with room library using annotations. Room only recognize things by reading annotations.
 
-#Project setup.
+# Project setup.
 1)Add the kotlin-kapt plugin to the top of the gradle.
 
 ```gradle
