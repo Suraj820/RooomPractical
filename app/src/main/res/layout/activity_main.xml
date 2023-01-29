@@ -63,6 +63,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textSize="18sp"
+                android:onClick="@{()->viewModel.clearAllOrDelete()}"
                 android:text="@={viewModel.clearAllOrDeleteButtonText}"
                 android:textStyle="bold" />
         </LinearLayout>
