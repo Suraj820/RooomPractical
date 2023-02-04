@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class SubscriberViewModel (private val subscriberRepository: SubscriberRepository) : ViewModel(){
     val inputName = MutableLiveData<String>()
     val inputEmail = MutableLiveData<String>()
+    val inputPhone = MutableLiveData<String>()
 
 
     val saveOrUpdateButtonText = MutableLiveData<String>()
@@ -40,17 +41,24 @@ class SubscriberViewModel (private val subscriberRepository: SubscriberRepositor
             statusMessage.value = Event("Please enter subscriber's email")
         }else if (!Patterns.EMAIL_ADDRESS.matcher(inputEmail.value!!).matches()){
             statusMessage.value = Event("Please enter a correct email address")
+        }else if (inputPhone.value == null){
+            statusMessage.value = Event("Please enter subscriber's phone")
+        }else if (!Patterns.PHONE.matcher(inputPhone.value!!).matches()){
+            statusMessage.value = Event("Please enter a correct phone number ")
         }else{
             if (isUpdateOrDelete) {
                 subscriberToUpdateOrDelete.name = inputName.value!!
                 subscriberToUpdateOrDelete.email = inputEmail.value!!
+                subscriberToUpdateOrDelete.phone = inputPhone.value!!
                 updateSubscriber(subscriberToUpdateOrDelete)
             } else {
                 val name = inputName.value!!
                 val email = inputEmail.value!!
-                insertSubscriber(Subscribers(0, name, email))
+                val phone = inputPhone.value!!
+                insertSubscriber(Subscribers(0, name, email,phone))
                 inputName.value = ""
                 inputEmail.value = ""
+                inputPhone.value = ""
             }
         }
 
@@ -96,6 +104,7 @@ class SubscriberViewModel (private val subscriberRepository: SubscriberRepositor
         if (noOfRowsDeleted > 0) {
             inputName.value = ""
             inputEmail.value = ""
+            inputPhone.value = ""
             isUpdateOrDelete = false
             saveOrUpdateButtonText.value = "Save"
             clearAllOrDeleteButtonText.value = "Clear All"
@@ -109,6 +118,7 @@ class SubscriberViewModel (private val subscriberRepository: SubscriberRepositor
 
        inputName.value = subscriber.name
        inputEmail.value = subscriber.email
+       inputPhone.value = subscriber.phone
        isUpdateOrDelete = true
        subscriberToUpdateOrDelete = subscriber
        saveOrUpdateButtonText.value = "Update"
@@ -119,6 +129,7 @@ class SubscriberViewModel (private val subscriberRepository: SubscriberRepositor
         if (noOfRows > 0) {
             inputName.value = ""
             inputEmail.value = ""
+            inputPhone.value = ""
             isUpdateOrDelete = false
             saveOrUpdateButtonText.value = "Save"
             clearAllOrDeleteButtonText.value = "Clear All"

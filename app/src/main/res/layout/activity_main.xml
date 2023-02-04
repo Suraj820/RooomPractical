@@ -40,6 +40,18 @@
             android:hint="Subscriber's email"
             android:inputType="textPersonName"
             android:textStyle="bold" />
+        <EditText
+            android:id="@+id/phone_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:ems="10"
+            android:text="@={viewModel.inputPhone}"
+            android:hint="Subscriber's phone"
+            android:inputType="phone"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"

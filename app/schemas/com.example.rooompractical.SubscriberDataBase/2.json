@@ -1,0 +1,53 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "0224eb3e2db15b8bee13f1cdefc717b5",
+    "entities": [
+      {
+        "tableName": "Subscribers_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`subscribers_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `subscribers_name` TEXT NOT NULL, `subscribers_email` TEXT NOT NULL, `subscribers_phone` TEXT NOT NULL DEFAULT 'NA')",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "subscribers_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "subscribers_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "subscribers_email",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "subscribers_phone",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'NA'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "subscribers_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0224eb3e2db15b8bee13f1cdefc717b5')"
+    ]
+  }
+}

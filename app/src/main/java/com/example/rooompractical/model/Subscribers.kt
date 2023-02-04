@@ -14,5 +14,8 @@ data class Subscribers(
     var name : String,
 
     @ColumnInfo(name = "subscribers_email")
-    var email : String
+    var email : String,
+
+    @ColumnInfo(name = "subscribers_phone", defaultValue = "NA")
+    var phone : String
 )

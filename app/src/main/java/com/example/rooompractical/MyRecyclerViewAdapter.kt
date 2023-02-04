@@ -37,6 +37,7 @@ class MyRecyclerViewAdapter(private val clickListener: (Subscribers)-> Unit ):
         fun bind(subscriber: Subscribers,clickListener: (Subscribers) -> Unit){
             binding.nameTextView.text = subscriber.name
             binding.emailTextView.text = subscriber.email
+            binding.phoneTextView.text = subscriber.phone
             binding.listItemLayout.setOnClickListener {
                 clickListener(subscriber)
             }
